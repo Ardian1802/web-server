@@ -1,4 +1,3 @@
-
 const postPredictHandler = require('../server/handler');
 
 const routes = [
@@ -8,8 +7,8 @@ const routes = [
     handler: async (request, h) => {
       const { image } = request.payload;
 
-      // Validasi ukuran file maksimal 1MB
-      if (image._data.length > 1000000) {
+      // Validasi apakah image dan image._data ada
+      if (!image || !image._data || image._data.length > 1000000) {
         const response = h.response({
           status: 'fail',
           message: 'Payload content length greater than maximum allowed: 1000000',
